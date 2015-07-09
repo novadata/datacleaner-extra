@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration xmlns="http://eobjects.org/analyzerbeans/configuration/1.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <configuration-metadata>
+        <configuration-name>DataCleaner configuration</configuration-name>
+        <configuration-description>Configures DataCleaner's initial environment.
+        </configuration-description>
+        <configuration-version>1.0</configuration-version>
+        <author>xiaoyong</author>
+        <created-date>2014-11-01</created-date>
+        <updated-date>2014-11-20</updated-date>
+    </configuration-metadata>
+
+    <datastore-catalog>
+
+        <jdbc-datastore name="phoenix">
+            <url>jdbc:phoenix:759a4041e38f:2181</url>
+            <driver>org.apache.phoenix.jdbc.PhoenixDriver</driver>
+            <username></username>
+            <password></password>
+        </jdbc-datastore>
+        <hbase-datastore name="hbase">
+            <zookeeper-hostname>c60387a3e89f</zookeeper-hostname>
+            <zookeeper-port>2181</zookeeper-port>
+        </hbase-datastore>
+    </datastore-catalog>
+
+    <reference-data-catalog>
+
+        <synonym-catalogs>
+
+        </synonym-catalogs>
+    </reference-data-catalog>
+
+    <multithreaded-taskrunner max-threads="2"/>
+
+    <storage-provider>
+        <combined>
+            <collections-storage>
+                <berkeley-db>
+                    <clean-directory-on-startup>true</clean-directory-on-startup>
+                </berkeley-db>
+            </collections-storage>
+            <row-annotation-storage>
+                <custom-storage-provider class-name="com.novacloud.data.datacleaner.extra.NovaInMemoryStorageProvider"></custom-storage-provider>
+            </row-annotation-storage>
+        </combined>
+    </storage-provider>
+
+    <classpath-scanner>
+        <package recursive="true">org.eobjects.analyzer.beans</package>
+        <package>org.eobjects.analyzer.result.renderer</package>
+        <package>org.eobjects.datacleaner.output.beans</package>
+        <package>org.eobjects.datacleaner.panels</package>
+        <package recursive="true">org.eobjects.datacleaner.widgets.result</package>
+        <package>com.nova.dq</package>
+    </classpath-scanner>
+
+</configuration>
